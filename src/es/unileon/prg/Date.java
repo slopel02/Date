@@ -16,36 +16,40 @@ public class Date{
 	int getMonth(){
 		return this.month;
 	}
-	int getYear(){
+	int getDay(){
 		return this.day;
 	}
 
-	boolean isSameYear(Date, aDate){
+	boolean isSameYear(Date aDate){
 		if (this.year== aDate.getYear()){
 			return true;
 		}
+		return false;
 	}
 
-	boolean isSameMonth(Date, aDate){
+	boolean isSameMonth(Date aDate){
 		if(this.month==aDate.getMonth()){
 			return true;
 		}
+		return false;
 	}
 
-	boolean isSameDay(Date, aDate){
+	boolean isSameDay(Date aDate){
 		if(this.day==aDate.getDay()){
 			return true;
 		}
+		return false;
 	}
 
-	boolean isSame(Date, aDate){
-		if(this.Date.isSameYear(aDate)==true && this.Date.isSameMonth(aDate)==true && this.Date.isSameYear(aDate)==true){
+	boolean isSame(Date aDate){
+		if(this.isSameYear(aDate)==true && this.isSameMonth(aDate)==true && this.isSameYear(aDate)==true){
 				return true;
 		}
+		return false;
 	}
 
 	boolean isDayOfMonthOk(){
-		boolean ok;
+		boolean ok=false;
 		switch(this.month){
 		case 1: //next
 		case 3: //next
@@ -81,64 +85,59 @@ public class Date{
 			}
 			break;
 		}
+		return ok;
 	}
 
-	String getMonthName(){
+	public String getMonthName(){
+		String Monthname;
+		Monthname="";
 		switch(this.month){
-		String name;
+		
 		case 1:
-			name= "Enero ";
+			Monthname= "Enero ";
 			break;
-		String name;
 		case 2:
-			name= "Febrero ";
+			Monthname= "Febrero ";
 			break;
-		String name;
 		case 3:
-			name= "Marzo ";
+			Monthname= "Marzo ";
 			break;
-		String name;
 		case 4:
-			name= "Abril ";
+			Monthname= "Abril ";
 			break;
-		String name;
 		case 5:
-			name= "Mayo ";
+			Monthname= "Mayo ";
 			break;
-		String name;
 		case 6:
-			name= "Junio ";
+			Monthname= "Junio ";
 			break;
-		String name;
 		case 7:
-			name= "Julio ";
+			Monthname= "Julio ";
 			break;
-		String name;
 		case 8:
-			name= "Agosto ";
+			Monthname= "Agosto ";
 			break;
-		String name;
 		case 9:
-			name= "Septiembre ";
+			Monthname= "Septiembre ";
 			break;
-		String name;
 		case 10:
-			name= "Octubre ";
+			Monthname= "Octubre ";
 			break;
-		String name;
 		case 11:
-			name= "Noviembre ";
+			Monthname= "Noviembre ";
 			break;
-		String name;
 		case 12:
-			name= "Diciembre ";
+			Monthname= "Diciembre ";
 			break;
 		}
+		return Monthname;
 	}
 
 	String stationOfMonth(){
-		switch(this.month){
 		String station;
+		station="";
+		switch(this.month){
+		
 		case 1: //next
 		case 2: //next
 		case 3: 
@@ -157,10 +156,14 @@ public class Date{
 		case 10: //next
 		case 11: //next
 		case 12: 
-			station="Otonyo";
+			station="Otoño";
 			break;
 		}
-			
+		return station;	
 	}
+	public String toString(){
+		return this.getDay() + "/"+ this.getMonth()+ "/"+ this.getYear();
+	}
+	
 		
 }
