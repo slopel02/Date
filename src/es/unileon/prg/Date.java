@@ -89,9 +89,14 @@ public class Date{
 	}
 
 	public String getMonthName(){
+		return this.getMonthName(this.getMonth());
+		
+	}
+
+	private String getMonthName(int i){
 		String Monthname;
 		Monthname="";
-		switch(this.month){
+		switch(i){
 		
 		case 1:
 			Monthname= "Enero ";
@@ -164,6 +169,13 @@ public class Date{
 	public String toString(){
 		return this.getDay() + "/"+ this.getMonth()+ "/"+ this.getYear();
 	}
-	
+	String restOfMonths(){
+		StringBuffer restOfMonths;
+		restOfMonths=" ";
+		for(int i=this.month;i<12;i++){
+			restOfMonths.append("\t"+this.getMonthName(i));
+		}
+		return restOfMonths.toString();
+	}
 		
 }
