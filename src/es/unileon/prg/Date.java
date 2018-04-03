@@ -10,47 +10,49 @@ public class Date{
 		this.month=month;
 		this.year=year;
 	}
-	int getYear(){
+	public int getYear(){
 		return this.year;
 	}
-	int getMonth(){
+	public int getMonth(){
 		return this.month;
 	}
-	int getDay(){
+	public int getDay(){
 		return this.day;
 	}
 
-	boolean isSameYear(Date aDate){
+	public boolean isSameYear(Date aDate){
 		if (this.year== aDate.getYear()){
 			return true;
 		}
 		return false;
 	}
 
-	boolean isSameMonth(Date aDate){
+	public boolean isSameMonth(Date aDate){
 		if(this.month==aDate.getMonth()){
 			return true;
 		}
 		return false;
 	}
 
-	boolean isSameDay(Date aDate){
+	public boolean isSameDay(Date aDate){
 		if(this.day==aDate.getDay()){
 			return true;
 		}
 		return false;
 	}
 
-	boolean isSame(Date aDate){
+	public boolean isSame(Date aDate){
 		if(this.isSameYear(aDate)==true && this.isSameMonth(aDate)==true && this.isSameYear(aDate)==true){
 				return true;
 		}
 		return false;
 	}
-
-	boolean isDayOfMonthOk(){
+	public boolean isDayOfMonthOk(){
+		return this.isDayOfMonthOk(this.month);
+	}
+	private boolean isDayOfMonthOk(int i){
 		boolean ok=false;
-		switch(this.month){
+		switch(i){
 		case 1: //next
 		case 3: //next
 		case 5: //next
@@ -95,7 +97,7 @@ public class Date{
 
 	private String getMonthName(int i){
 		String Monthname;
-		Monthname="";
+		Monthname=null;
 		switch(i){
 		
 		case 1:
@@ -138,7 +140,7 @@ public class Date{
 		return Monthname;
 	}
 
-	String stationOfMonth(){
+	public String stationOfMonth(){
 		String station;
 		station="";
 		switch(this.month){
@@ -169,13 +171,62 @@ public class Date{
 	public String toString(){
 		return this.getDay() + "/"+ this.getMonth()+ "/"+ this.getYear();
 	}
-	String restOfMonths(){
+	public String restOfMonths(){ //in the same year
 		StringBuffer restOfMonths;
-		restOfMonths=" ";
-		for(int i=this.month;i<12;i++){
-			restOfMonths.append("\t"+this.getMonthName(i));
+		restOfMonths=new StringBuffer();
+		for(int i=this.month;i<=12;i++){
+			restOfMonths.append(this.getMonthName(i)+",");
 		}
 		return restOfMonths.toString();
+	}
+	public String restOfDaysInAMonth(){
+		StringBuffer restOfDaysInAMonth;
+		restOfDaysInAMonth= new StringBuffer();
+		for(int i=this.day;i<=31;i++){	
+		Date rest;
+		rest =new Date(i,this.month,this.year);
+			if(rest.isDayOfMonthOk()==true){
+				restOfDaysInAMonth.append(rest+ "\t");
+			}
+		}
+		return restOfDaysInAMonth.toString();
+	}
+	
+	public String sameMonths(){
+		StringBuffer sameMonths;
+		sameMonths= new StringBuffer();
+		for(int i=0;i<=12;i++){
+			for(int j=1; j<=32;j++){
+			Date otherMonth;
+			otherMonth= new Date(j,i,this.year);
+				if(otherMonth.isDayOfMonthOk()==false){
+				sameMonths.append(this.getMonthName(i));	
+				}
+
+			}
+		}
+		return sameMonths.toString();
+	}
+	public int daysSinceStartYear(){
+		int cont=0;
+		Date daysCont;
+		daysCont= new Date(this.day,this.month,this.year);
+		for (int i=1;i<=this.month;i++){
+			if(i==this.month){
+				for(int j=1;j<=this.day;j++){
+					cont=cont+1;
+				}
+			}
+			else {	
+				
+				for(int j=1;daysCont.isDayOfMonthOk(i)==true;j++){
+					daysCont.day=j+1;
+					cont=cont+1;
+				}
+				daysCont.day=this.day;
+			}
+		}
+		return cont;
 	}
 		
 }
