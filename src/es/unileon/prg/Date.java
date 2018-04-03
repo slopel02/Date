@@ -195,14 +195,11 @@ public class Date{
 	public String sameMonths(){
 		StringBuffer sameMonths;
 		sameMonths= new StringBuffer();
-		for(int i=0;i<=12;i++){
-			for(int j=1; j<=32;j++){
-			Date otherMonth;
-			otherMonth= new Date(j,i,this.year);
-				if(otherMonth.isDayOfMonthOk()==false){
-				sameMonths.append(this.getMonthName(i));	
-				}
-
+		for(int i=1;i<=12;i++){
+			Date sameMonth;
+			sameMonth= new Date(this.day,i,this.year);
+			if(this.lastDayOfMonth()==sameMonth.lastDayOfMonth()){
+				sameMonths.append(this.getMonthName(i));
 			}
 		}
 		return sameMonths.toString();
@@ -227,6 +224,30 @@ public class Date{
 			}
 		}
 		return cont;
+	}
+	private int lastDayOfMonth(){
+		int lastDay=1;
+		switch(this.month){
+		case 1: //next
+		case 3: //next
+		case 5: //next
+		case 7: //next
+		case 8: //next
+		case 10: //next
+		case 12:
+			lastDay=31;
+			break;
+		case 4: //next
+		case 6: //next
+		case 9: //next
+		case 11:
+			lastDay=30;
+			break;
+		case 2:
+			lastDay=28;
+			break;
+		}
+	return lastDay;
 	}
 		
 }
