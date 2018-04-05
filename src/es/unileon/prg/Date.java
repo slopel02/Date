@@ -220,14 +220,17 @@ public class Date{
 					daysCont.day=j+1;
 					cont=cont+1;
 				}
-				daysCont.day=this.day;
+			daysCont.day=this.day;
 			}
 		}
 		return cont;
 	}
 	private int lastDayOfMonth(){
+		return (this.lastDayOfMonth(this.month));
+	}
+	private int lastDayOfMonth(int i){
 		int lastDay=1;
-		switch(this.month){
+		switch(i){
 		case 1: //next
 		case 3: //next
 		case 5: //next
@@ -249,5 +252,29 @@ public class Date{
 		}
 	return lastDay;
 	}
-		
+	/*public int contEqualDate(){
+		int cont, day, month;
+		cont=0; day=1; month=1;
+		Date random;
+		random =new Date(day,month,this.year);
+		while(this.isSame(random)==false){
+			random.month=(int)(Math.random()*12+1);
+			random.day=(int)(Math.random()*(this.lastDayOfMonth(month))+1);
+			cont = cont +1;
+		}
+		return cont;
+	}*/
+	public int contEqualDate(){
+		int cont, day, month;
+		cont=0; day=1; month=1;
+		Date random;
+		random =new Date(day,month,this.year);
+		do{
+			random.month=(int)(Math.random()*12)+1;
+			random.day=(int)(Math.random()*(this.lastDayOfMonth(month)))+1;
+			cont = cont +1;
+		}while(this.isSame(random)==false);
+		return cont;
+	}
+	
 }
