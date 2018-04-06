@@ -276,5 +276,40 @@ public class Date{
 		}while(this.isSame(random)==false);
 		return cont;
 	}
-	
+	private String dayOfWeek(int i){//Sabiendo que el 1 de Enero es Lunes
+		String diaSemana;
+		diaSemana="";
+		switch(i){
+		case 1:
+			diaSemana="Lunes";
+			break;
+		case 2: 
+			diaSemana="Martes";
+			break;
+		case 3: 
+			diaSemana="Miercoles";
+			break;
+		case 4:
+			diaSemana="Jueves";
+			break;
+		case 5:
+			diaSemana="Viernes";
+			break;
+		case 6:
+			diaSemana="Sabado";
+			break;
+		case 0:
+			diaSemana="Domingo";
+			break;
+		}
+		return diaSemana;
+	}
+	public String dayOfWeek(){
+		int days;
+		days=this.daysSinceStartYear();
+		while (days>=7){
+			days=days%7;
+		}
+		return (this.dayOfWeek(days));
+	}
 }
