@@ -10,12 +10,15 @@ public class Date{
 		this.month=month;
 		this.year=year;
 	}
+
 	public int getYear(){
 		return this.year;
 	}
+
 	public int getMonth(){
 		return this.month;
 	}
+
 	public int getDay(){
 		return this.day;
 	}
@@ -47,6 +50,7 @@ public class Date{
 		}
 		return false;
 	}
+
 	public boolean isDayOfMonthOk(){
 		return this.isDayOfMonthOk(this.month);
 	}
@@ -94,7 +98,6 @@ public class Date{
 		return this.getMonthName(this.getMonth());
 		
 	}
-
 	private String getMonthName(int i){
 		String Monthname;
 		Monthname=null;
@@ -146,31 +149,48 @@ public class Date{
 		switch(this.month){
 		
 		case 1: //next
+			
 		case 2: //next
 		case 3: 
 			stationOfMonth="Invierno";
+			if(this.day>=21){
+			stationOfMonth="Primavera";
+			}
 			break;
+			
 		case 4: //next
 		case 5: //next
 		case 6: 
 			stationOfMonth="Primavera";
+			if(this.day>=22){
+			stationOfMonth="Verano";
+			}
 			break;
 		case 7: //next
 		case 8: //next
 		case 9: 
 			stationOfMonth="Verano";
+			if(this.day>=23){
+			stationOfMonth="Otoño";
+			}
 			break;
 		case 10: //next
 		case 11: //next
 		case 12: 
 			stationOfMonth="Otoño";
+			if(this.day>=22){
+			stationOfMonth="Invierno";
+			}
 			break;
+			
 		}
 		return stationOfMonth;	
 	}
+
 	public String toString(){
 		return this.getDay() + "/"+ this.getMonth()+ "/"+ this.getYear();
 	}
+
 	public String restOfMonths(){ //in the same year
 		StringBuffer restOfMonths;
 		restOfMonths=new StringBuffer();
@@ -185,6 +205,7 @@ public class Date{
 		}
 		return restOfMonths.toString();
 	}
+
 	public String restOfDateInAMonth(){
 		StringBuffer restOfDateInAMonth;
 		restOfDateInAMonth= new StringBuffer();
@@ -206,24 +227,29 @@ public class Date{
 			sameMonth= new Date(this.day,i,this.year);
 			if(this.lastDayOfMonth()==sameMonth.lastDayOfMonth()){
 				sameMonths.append(this.getMonthName(i));
+				if(i!=12){
+					sameMonths.append(", ");
+				}
+				if(i==12){
+					sameMonths.append(".");
+				}
 			}
 		}
 		return sameMonths.toString();
 	}
+
 	public int daysSinceStartYear(){
 		int cont=0;
 		Date daysCont;
 		daysCont= new Date(this.day,this.month,this.year);
-		for (int i=1;i<=this.month;i++){
-			if(i==this.month){
-				for(int j=1;j<=this.day;j++){
+		for (int i=1;i<=daysCont.month;i++){
+			if(i==daysCont.month){
+				for(int j=0;j<daysCont.day;j++){
 					cont=cont+1;
 				}
 			}
 			else {	
-				
-				for(int j=1;daysCont.isDayOfMonthOk(i)==true;j++){
-					daysCont.day=j+1;
+				for(int j=0;j<daysCont.lastDayOfMonth(i);j++){
 					cont=cont+1;
 				}
 			daysCont.day=this.day;
@@ -231,6 +257,7 @@ public class Date{
 		}
 		return cont;
 	}
+
 	private int lastDayOfMonth(){
 		return (this.lastDayOfMonth(this.month));
 	}
@@ -258,6 +285,7 @@ public class Date{
 		}
 	return lastDay;
 	}
+
 	/*public int contEqualDate(){
 		int cont, day, month;
 		cont=0; day=1; month=1;
@@ -282,6 +310,7 @@ public class Date{
 		}while(this.isSame(random)==false);
 		return cont;
 	}
+
 	private String dayOfFirstWeek(int i){//Sabiendo que el 1 de Enero es Lunes
 		String dayOfFirstWeek;
 		dayOfFirstWeek=null;
@@ -310,6 +339,7 @@ public class Date{
 		}
 		return dayOfFirstWeek;
 	}
+
 	public String nameDayOfWeek(){
 		int days;
 		days=this.daysSinceStartYear();
