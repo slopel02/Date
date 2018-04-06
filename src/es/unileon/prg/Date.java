@@ -101,72 +101,72 @@ public class Date{
 		switch(i){
 		
 		case 1:
-			Monthname= "Enero ";
+			Monthname= "Enero";
 			break;
 		case 2:
-			Monthname= "Febrero ";
+			Monthname= "Febrero";
 			break;
 		case 3:
-			Monthname= "Marzo ";
+			Monthname= "Marzo";
 			break;
 		case 4:
-			Monthname= "Abril ";
+			Monthname= "Abril";
 			break;
 		case 5:
-			Monthname= "Mayo ";
+			Monthname= "Mayo";
 			break;
 		case 6:
-			Monthname= "Junio ";
+			Monthname= "Junio";
 			break;
 		case 7:
-			Monthname= "Julio ";
+			Monthname= "Julio";
 			break;
 		case 8:
-			Monthname= "Agosto ";
+			Monthname= "Agosto";
 			break;
 		case 9:
-			Monthname= "Septiembre ";
+			Monthname= "Septiembre";
 			break;
 		case 10:
-			Monthname= "Octubre ";
+			Monthname= "Octubre";
 			break;
 		case 11:
-			Monthname= "Noviembre ";
+			Monthname= "Noviembre";
 			break;
 		case 12:
-			Monthname= "Diciembre ";
+			Monthname= "Diciembre";
 			break;
 		}
 		return Monthname;
 	}
 
 	public String stationOfMonth(){
-		String station;
-		station="";
+		String stationOfMonth;
+		stationOfMonth=null;
 		switch(this.month){
 		
 		case 1: //next
 		case 2: //next
 		case 3: 
-			station="Invierno";
+			stationOfMonth="Invierno";
 			break;
 		case 4: //next
 		case 5: //next
 		case 6: 
-			station="Primavera";
+			stationOfMonth="Primavera";
 			break;
 		case 7: //next
 		case 8: //next
 		case 9: 
-			station="Verano";
+			stationOfMonth="Verano";
 			break;
 		case 10: //next
 		case 11: //next
 		case 12: 
-			station="Otoño";
+			stationOfMonth="Otoño";
 			break;
 		}
-		return station;	
+		return stationOfMonth;	
 	}
 	public String toString(){
 		return this.getDay() + "/"+ this.getMonth()+ "/"+ this.getYear();
@@ -175,7 +175,13 @@ public class Date{
 		StringBuffer restOfMonths;
 		restOfMonths=new StringBuffer();
 		for(int i=this.month;i<=12;i++){
-			restOfMonths.append(this.getMonthName(i)+",");
+			restOfMonths.append(this.getMonthName(i));
+			if(i!=12){
+			restOfMonths.append(", ");
+			}
+			if(i==12){
+			restOfMonths.append(".");
+			}
 		}
 		return restOfMonths.toString();
 	}
@@ -276,40 +282,40 @@ public class Date{
 		}while(this.isSame(random)==false);
 		return cont;
 	}
-	private String dayOfWeek(int i){//Sabiendo que el 1 de Enero es Lunes
-		String diaSemana;
-		diaSemana="";
+	private String dayOfFirstWeek(int i){//Sabiendo que el 1 de Enero es Lunes
+		String dayOfFirstWeek;
+		dayOfFirstWeek=null;
 		switch(i){
 		case 1:
-			diaSemana="Lunes";
+			dayOfFirstWeek="Lunes";
 			break;
 		case 2: 
-			diaSemana="Martes";
+			dayOfFirstWeek="Martes";
 			break;
 		case 3: 
-			diaSemana="Miercoles";
+			dayOfFirstWeek="Miercoles";
 			break;
 		case 4:
-			diaSemana="Jueves";
+			dayOfFirstWeek="Jueves";
 			break;
 		case 5:
-			diaSemana="Viernes";
+			dayOfFirstWeek="Viernes";
 			break;
 		case 6:
-			diaSemana="Sabado";
+			dayOfFirstWeek="Sabado";
 			break;
 		case 0:
-			diaSemana="Domingo";
+			dayOfFirstWeek="Domingo";
 			break;
 		}
-		return diaSemana;
+		return dayOfFirstWeek;
 	}
-	public String dayOfWeek(){
+	public String nameDayOfWeek(){
 		int days;
 		days=this.daysSinceStartYear();
 		while (days>=7){
 			days=days%7;
 		}
-		return (this.dayOfWeek(days));
+		return (this.dayOfFirstWeek(days));
 	}
 }
