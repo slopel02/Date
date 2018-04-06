@@ -185,17 +185,17 @@ public class Date{
 		}
 		return restOfMonths.toString();
 	}
-	public String restOfDaysInAMonth(){
-		StringBuffer restOfDaysInAMonth;
-		restOfDaysInAMonth= new StringBuffer();
+	public String restOfDateInAMonth(){
+		StringBuffer restOfDateInAMonth;
+		restOfDateInAMonth= new StringBuffer();
 		for(int i=this.day;i<=31;i++){	
 		Date rest;
 		rest =new Date(i,this.month,this.year);
 			if(rest.isDayOfMonthOk()==true){
-				restOfDaysInAMonth.append(rest+ "\t");
+				restOfDateInAMonth.append(rest+ "\t");
 			}
 		}
-		return restOfDaysInAMonth.toString();
+		return restOfDateInAMonth.toString();
 	}
 	
 	public String sameMonths(){

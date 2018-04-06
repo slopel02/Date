@@ -14,7 +14,7 @@ public class mainDate{
 		System.out.println("Es el dia correcto en el mes: "+today.isDayOfMonthOk());
 		System.out.println("La estacion de today "+today.stationOfMonth());
 		System.out.println("Los meses desde el mes de today hasta final de año: "+today.restOfMonths());
-		System.out.println("Las fechas desde today hasta final de mes:\n "+ today.restOfDaysInAMonth());
+		System.out.println("Las fechas desde today hasta final de mes:\n "+ today.restOfDateInAMonth());
 		System.out.println("Los meses que tienen los mismos dias que el mes de today: "+today.sameMonths());
 		System.out.println("Desde que comenzo el año hasta today han pasado "+today.daysSinceStartYear()+" dias");
 		System.out.println("Intentos para adivinar la fecha today: "+today.contEqualDate());
